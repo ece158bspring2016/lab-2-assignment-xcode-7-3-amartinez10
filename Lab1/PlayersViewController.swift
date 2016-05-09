@@ -5,6 +5,7 @@
 //  Created by Allan Martinez on 4/22/16.
 //  Copyright © 2016 Allan Martinez. All rights reserved.
 //
+//h
 
 import UIKit
 
@@ -64,6 +65,25 @@ class PlayersViewController: UITableViewController {
         let imageName = "\(rating)Stars"
         return UIImage(named:imageName)
     }
+    
+    
+    @IBAction func cancelToPlayersViewController(segue:UIStoryboardSegue) {
+    }
+    
+    @IBAction func savePlayerDetail(segue:UIStoryboardSegue) {
+        if let playerDetailsViewController = segue.sourceViewController as? PlayerDetailsViewController {
+            
+            //add the new player to the players array
+            if let player = playerDetailsViewController.player {
+                players.append(player)
+                
+                //update the tableView
+                let indexPath = NSIndexPath(forRow: players.count-1, inSection: 0)
+                tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            }
+        }
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
